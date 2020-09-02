@@ -1,23 +1,23 @@
-function getDogImage(number) {
-    fetch (`https://dog.ceo/api/breeds/image/random/${number}`)
+function getDogImage(dogBreed) {
+    fetch (`https://dog.ceo/api/breed/${dogBreed}/images/random`)
         .then(response => response.json())
         .then(responseJson => renderDogs(responseJson))
+        .catch(error => alert('Breed not recognized. Please try again.'));
 }
 
 function renderDogs(responseJson) {
 console.log(responseJson);
-$('section').html(responseJson.message.map(image => `
-    <img src="${image}">
-`)
-);
+$('section').html(`
+    <img src="${responseJson.message}">
+`);
 
 }
 
 function watchForm() {
 $('form').submit( e => {
-    const number = e.target.number.value;
+    const dogBreed = e.target.dogBreed.value;
     event.preventDefault();
-    getDogImage(number);
+    getDogImage(dogBreed);
 });
 }
 
