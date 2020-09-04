@@ -7,7 +7,7 @@ function getDogImage(number) {
 function renderDogs(responseJson) {
 console.log(responseJson);
 $('section').html(responseJson.message.map(image => `
-    <img src="${image}">
+    <img src="${image}"><br>
 `)
 );
 
